@@ -1,8 +1,13 @@
 # SAT Solver : Enigmas y Misterios
 ![Python](https://img.shields.io/badge/Python-yellow)
 
+# SAT Solver : Enigmas y Misterios
+
 ## ¿Qué es un SAT Solver?
+
 Un SAT solver (Satisfiability Solver) es un software que resuelve problemas de satisfacibilidad booleana. Estos problemas consisten en determinar si existe una asignación de valores (verdadero o falso) a las variables de una fórmula booleana que haga que la fórmula sea verdadera. En otras palabras, el SAT solver busca una solución para una fórmula lógica expresada en forma de cláusulas, si es que existe una.
+
+![infografia_sat_solver_conceptos.png.png](images/infografia_sat_solver_conceptos.png.png)
 
 ### ¿Cómo funciona un SAT Solver?
 
@@ -14,15 +19,19 @@ Un SAT solver (Satisfiability Solver) es un software que resuelve problemas de s
     - **Optimización**: Emplea técnicas avanzadas como la propagación de cláusulas y el aprendizaje de cláusulas para mejorar la eficiencia.
 3. **Salida**: El solver devuelve si la fórmula es satisfacible (con una asignación de valores) o insatisfacible (sin ninguna asignación que haga verdadera la fórmula).
 
-### ¿Qué es la biblioteca PySAT?
+## ¿Qué es la biblioteca PySAT?
 
 PySAT es una biblioteca en Python diseñada para trabajar con problemas de satisfacibilidad booleana (SAT). Proporciona una interfaz para diferentes solvers SAT y herramientas para manipular y analizar fórmulas CNF. Es útil para investigadores y desarrolladores que trabajan con problemas de lógica y optimización combinatoria.
+
+![infografia_pysat_algoritmo_python.png](images/infografia_pysat_algoritmo_python.png)
 
 # MENÚ PRINCIPAL
 
 **Descripción:**
 
 En este juego de misterio, asumes el rol del detective Hércules Poirot, quien debe resolver intrigantes casos de asesinato y trampa. Cada caso tiene su propio conjunto de personajes y declaraciones que guiarán tu deducción.
+
+![Enignas-y-misterios-Logic.png](images/Enignas-y-misterios-Logic.png)
 
 **Opciones de Casos:**
 
@@ -34,6 +43,8 @@ En este juego de misterio, asumes el rol del detective Hércules Poirot, quien d
 ---
 
 ## NIVEL FÁCIL: El Misterio del Museo
+
+![Misterio-del-museo-portada.png](images/Misterio-del-museo-portada.png)
 
 ### Descripción del Caso
 
@@ -54,6 +65,8 @@ El objetivo del juego es determinar quién es el verdadero culpable al analizar 
 ### **Formulación Lógica del Juego**
 
 El juego utiliza un enfoque de lógica proposicional para deducir quién es el culpable basándose en las declaraciones de los sospechosos. Esta lógica se formula en términos de cláusulas CNF (forma normal conjuntiva) que se resuelven usando un SAT solver.
+
+![Misterio-del-museo-personajes.png](images/Misterio-del-museo-personajes.png)
 
 ### **Personajes**
 
@@ -116,9 +129,13 @@ El juego utiliza un SAT solver para resolver el conjunto de cláusulas generado 
 
 ## NIVEL INTERMEDIO: Asesinato en la Mansión Baker Street
 
+![Asesinato-en-la-mansion-baker-street-portada.png](images/Asesinato-en-la-mansion-baker-street-portada.png)
+
 ### Descripción del Caso
 
 Durante la fiesta de fin de año en la mansión Baker Street, el anfitrión ha sido asesinado. En el momento del crimen, solo seis invitados permanecían en la mansión: el Coronel Mostaza, la Señora Azulino, el Profesor Moradillo, el Señor Verdi, la Señorita Escarlata y la Chef Leblang. Las coartadas y testimonios de estos personajes serán clave para desentrañar el misterio. Cada uno presenta coartadas y declaraciones que deben ser cuidadosamente examinadas para descubrir al culpable.
+
+![Asesinato-en-la-mansion-baker-street-personajes.png](images/Asesinato-en-la-mansion-baker-street-personajes.png)
 
 ### **Personajes**
 
@@ -238,9 +255,13 @@ $$
 
 ## NIVEL AVANZADO: Alguien hizo trampa en el Examen
 
+![Trampa-en-el-examen-portada.png](images/Trampa-en-el-examen-portada.png)
+
 ### Descripción del Caso
 
 "El Tramposo del Examen" es un juego de detectives en el que el jugador debe descubrir quién hizo trampa durante un examen importante. Hay seis estudiantes sospechosos, y cada uno de ellos podría ser el culpable. El objetivo del jugador es identificar al culpable y determinar cómo hizo trampa, utilizando pistas y deducciones basadas en declaraciones que podrían ser ciertas o falsas.
+
+![Trampa-en-el-examen-personajes-y-trampa.png](images/Trampa-en-el-examen-personajes-y-trampa.png)
 
 ### **Personajes**
 
@@ -259,7 +280,7 @@ $$
 - Audífono oculto
 - Se copió de su compañero/a
 
-## **Propósito del Juego**
+### **Propósito del Juego**
 
 ### **Pistas para encontrar al culpable**
 
@@ -298,7 +319,7 @@ $$
     - $T_{A}$: Audífono oculto.
     - $T_{P}$: Se copió de un compañero/a.
 
-## **Formulación de Declaraciones**
+### **Formulación de Declaraciones**
 
 ### **Pistas**
 
@@ -339,7 +360,7 @@ P_D ∨ P_W) ∧ ((¬P_Al ∨ ¬P_M) ∧ (¬P_Al ∨ ¬P_An) ∧ (¬P_Al ∨ ¬P
 (¬P_D ∨ ¬P_W))
 $$
 
-| **P_Al** | **P_An** | **P_B** | **P_D** | **P_M** | **P_W** | **FP** |
+| **P_Al** | **P_An** | **P_B** | **P_D** | **P_M** | **P_W** | **Formula Personajes** |
 | --- | --- | --- | --- | --- | --- | --- |
 | F | F | F | F | F | F | F |
 | F | F | F | F | F | T | F |
@@ -412,7 +433,7 @@ $$
 FT = (¬T_H) ∧ (T_P ∨ T_C ∨ T_H ∨ T_E ∨ T_A) ∧ (¬T_E) ∧ (T_P ∨ T_A ∨ T_C) ∧ (T_P) ∧ (¬T_E ∨ T_P)∧ (T_P ∨ T_C) ∧ (¬T_C)∧(T_C ∨ T_H ∨ T_E ∨ T_A ∨ T_P)∧((T_C ∨ T_H ∨ T_E ∨ T_A ∨ T_P) ∧ ¬(T_C ∧ T_H) ∧ ¬(T_C ∧ T_E) ∧ ¬(T_C ∧ T_A) ∧ ¬(T_C ∧ T_P) ∧ ¬(T_H ∧ T_E) ∧ ¬(T_H ∧ T_A) ∧ ¬(T_H ∧ T_P) ∧ ¬(T_E ∧ T_A) ∧ ¬(T_E ∧ T_P) ∧ ¬(T_A ∧ T_P))
 $$
 
-| **P_Al** | **P_An** | **P_B** | **P_D** | **P_M** | **P_W** | **FT** |
+| **P_Al** | **P_An** | **P_B** | **P_D** | **P_M** | **P_W** | **Formula Trampa** |
 | --- | --- | --- | --- | --- | --- | --- |
 | F | F | F | F | F | F | F |
 | F | F | F | F | F | T | F |
