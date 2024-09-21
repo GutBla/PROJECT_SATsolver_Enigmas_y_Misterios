@@ -106,11 +106,11 @@ Para asegurar que solo uno de los sospechosos es el culpable, se utilizan las si
 
 - Al menos uno es culpable:
     
-    $ S_1 \lor S_2 \lor S_3 \lor S_4 \lor S_5 $
+    $S_1\lor S_2\lor S_3\lor S_4\lor S_5$
     
 - Solo uno puede ser culpable:
     
-    $ (\neg S_1 \lor \neg S_2), (\neg S_1 \lor \neg S_3), (\neg S_1 \lor \neg S_4), (\neg S_1 \lor \neg S_5), \ldots, (\neg S_4 \lor \neg S_5)$
+    $(\neg S_1 \lor \neg S_2), (\neg S_1 \lor \neg S_3), (\neg S_1 \lor \neg S_4), (\neg S_1 \lor \neg S_5), \ldots, (\neg S_4 \lor \neg S_5)$
     
 
 Estas cláusulas aseguran que solo una de las variables $S_1$ a $S_5$ puede ser verdadera, es decir, solo un sospechoso puede ser el ladrón.
@@ -174,7 +174,7 @@ Según los testimonios:
 
 ### **Conjunción de todas las proposiciones:**
 
-$ Formula = (\neg SA \lor CL) \land \neg CL \land (PM \lor \neg SE) \land (\neg PM \lor SE) \land (CM \lor SV \lor PM) \land (\neg SV \lor SA) \land \neg SE$
+$Formula = (\neg SA \lor CL) \land \neg CL \land (PM \lor \neg SE) \land (\neg PM \lor SE) \land (CM \lor SV \lor PM) \land (\neg SV \lor SA) \land \neg SE$
 
 | **CL** | **CM** | **PM** | **SA** | **SE** | **SV** | Formula |
 | --- | --- | --- | --- | --- | --- | --- |
