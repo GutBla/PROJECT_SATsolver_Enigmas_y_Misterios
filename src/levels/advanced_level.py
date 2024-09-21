@@ -2,7 +2,6 @@ from colorama import init, Fore, Style
 from pysat.solvers import Solver
 from pysat.formula import CNF
 
-# Inicialización de colorama
 init(autoreset=True)
 
 def print_banner():
@@ -97,26 +96,21 @@ def solve_case():
     """Resuelve el caso utilizando un solver SAT."""
     cnf = CNF()
 
-    # Variables para los sospechosos
     P_Al, P_M, P_An, P_B, P_D, P_W = 1, 2, 3, 4, 5, 6
 
-    # Variables para los métodos de trampa
     T_C, T_H, T_E, T_A, T_P = 7, 8, 9, 10, 11
 
-    # Reglas basadas en pistas
-    cnf.append([-P_B, P_Al])     # Si Brisa está involucrada, entonces Alondra también lo está
-    cnf.append([-P_D])           # Daniel no es culpable
-    cnf.append([-P_Al])          # Alan no es culpable
-    cnf.append([-P_W])           # Wilmar no es culpable
-    cnf.append([-P_An, P_B])     # Si Andrea es culpable, entonces Brisa también lo es
-    cnf.append([P_Al, P_M, P_An, P_B, P_D, P_W])  # Solo hay un culpable
+    cnf.append([-P_B, P_Al])
+    cnf.append([-P_D]) 
+    cnf.append([-P_Al]) 
+    cnf.append([-P_W])
+    cnf.append([-P_An, P_B])
+    cnf.append([P_Al, P_M, P_An, P_B, P_D, P_W])
 
-    # Solo un culpable
     for i in range(1, 7):
         for j in range(i + 1, 7):
             cnf.append([-i, -j])
 
-    # Reglas para las trampas
     cnf.append([-T_H])
     cnf.append([-T_C])
     cnf.append([T_P, T_C, T_H, T_E, T_A])

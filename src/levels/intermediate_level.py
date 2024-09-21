@@ -54,12 +54,12 @@ def get_suspect_choice():
 def translate_solution(sol):
     """Traduce la solución del SAT solver a nombres de sospechosos."""
     var_names = {
-        1: 'SA',  # Señora Azulino
-        2: 'CL',  # Chef Leblang
-        3: 'PM',  # Profesor Moradillo
-        4: 'SV',  # Señor Verdi
-        5: 'SE',  # Señorita Escarlata
-        6: 'CM'   # Coronel Mostaza
+        1: 'SA',
+        2: 'CL',
+        3: 'PM',
+        4: 'SV',
+        5: 'SE',
+        6: 'CM'
     }
     result = {}
     for var in sol:
@@ -72,13 +72,13 @@ def translate_solution(sol):
 def solve_case():
     """Crea y resuelve el caso usando un SAT solver."""
     clauses = [
-        [-1, 2],     # ¬SA ∨ CL
-        [-2],        # ¬CL
-        [3, -5],     # PM ∨ ¬SE
-        [-3, 5],     # ¬PM ∨ SE
-        [6, 4, 3],   # CM ∨ SV ∨ PM
-        [-4, 1],     # ¬SV ∨ SA
-        [-5]         # ¬SE
+        [-1, 2],
+        [-2],
+        [3, -5],
+        [-3, 5],
+        [6, 4, 3],
+        [-4, 1],
+        [-5]
     ]
 
     solver = Solver()
@@ -105,7 +105,6 @@ def play():
           Fore.WHITE + "Chef Leblang" + Style.RESET_ALL + ".")
     print("\nExamina las declaraciones, elige a tu sospechoso y resuelve el caso.\n")
 
-    # Declaraciones del caso
     statements = [
         f"Según los testimonios, si la {Fore.BLUE}Señora Azulino{Style.RESET_ALL} es culpable, entonces la {Fore.WHITE}Chef Leblang{Style.RESET_ALL} también lo es, lo que sugiere una posible complicidad entre ambas.",
         f"La {Fore.WHITE}Chef Leblang{Style.RESET_ALL} no es culpable; su coartada es sólida, ya que estaba en la cocina durante el crimen.",

@@ -2,7 +2,6 @@ from pysat.solvers import Solver
 from pysat.formula import CNF
 from colorama import init, Fore, Style
 
-# Inicialización de colorama
 init(autoreset=True)
 
 def print_banner():
@@ -44,14 +43,12 @@ def play():
     print("\nSospechosos: Alicia, Bruno, Carmen, Daniel y Elena.")
     print("Afirmaciones:\n")
     
-    # Declaraciones de los sospechosos
     print(Fore.GREEN + "1. Alicia:" + Fore.CYAN + " 'No soy la culpable.'")
     print(Fore.MAGENTA + "2. Bruno:" + Fore.CYAN + " 'Carmen no es la culpable.'")
     print(Fore.RED + "3. Carmen:" + Fore.CYAN + " 'El ladrón es uno de los visitantes frecuentes.'")
     print(Fore.BLUE + "4. Daniel:" + Fore.CYAN + " 'Alicia es la culpable.'")
     print(Fore.YELLOW + "5. Elena:" + Fore.CYAN + " 'Bruno no es el culpable.'\n")
     
-    # Diccionario para los nombres con colores
     names = {
         1: Fore.GREEN + "Alicia" + Style.RESET_ALL,
         2: Fore.MAGENTA + "Bruno" + Style.RESET_ALL,
@@ -60,31 +57,26 @@ def play():
         5: Fore.YELLOW + "Elena" + Style.RESET_ALL
     }
 
-    # Solicitar afirmaciones del jugador
     afirmaciones = {i: solicitar_respuesta(names[i]) for i in range(1, 6)}
-    
-    # Inicialización de la lista de cláusulas
+
     clauses = []
 
-    # Agregar las cláusulas basadas en las respuestas del jugador
-    agregar_clausula(clauses, 1, afirmaciones[1] == "n")  # Alicia: "No soy la culpable"
-    agregar_clausula(clauses, 3, afirmaciones[2] == "n")  # Bruno: "Carmen no es la culpable"
+    agregar_clausula(clauses, 1, afirmaciones[1] == "n")
+    agregar_clausula(clauses, 3, afirmaciones[2] == "n")
     
-    if afirmaciones[3] == "n":  # Carmen: "El ladrón es uno de los visitantes frecuentes"
+    if afirmaciones[3] == "n":
         agregar_clausula(clauses, 4, False)
         agregar_clausula(clauses, 5, False)
     else:
         agregar_clausula(clauses, 4, True)
         agregar_clausula(clauses, 5, True)
     
-    agregar_clausula(clauses, 1, afirmaciones[4] == "a")  # Daniel: "Alicia es la culpable"
-    agregar_clausula(clauses, 2, afirmaciones[5] == "n")  # Elena: "Bruno no es el culpable"
+    agregar_clausula(clauses, 1, afirmaciones[4] == "a")
+    agregar_clausula(clauses, 2, afirmaciones[5] == "n")
     
-    # Agregar cláusula para que al menos uno sea culpable
-    clauses.append([1, 2, 3, 4, 5])  # Al menos uno es culpable
-    clauses.append([-1, -2, -3, -4, -5])  # No pueden ser todos inocentes
+    clauses.append([1, 2, 3, 4, 5])
+    clauses.append([-1, -2, -3, -4, -5])
 
-    # Resolver usando el solver SAT
     solver = Solver()
     solver.append_formula(clauses)
 
