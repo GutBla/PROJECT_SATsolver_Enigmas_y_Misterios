@@ -1,8 +1,6 @@
 # SAT Solver : Enigmas y Misterios
 ![Python](https://img.shields.io/badge/Python-yellow)
 
-# SAT Solver : Enigmas y Misterios
-
 ## ¿Qué es un SAT Solver?
 
 Un SAT solver (Satisfiability Solver) es un software que resuelve problemas de satisfacibilidad booleana. Estos problemas consisten en determinar si existe una asignación de valores (verdadero o falso) a las variables de una fórmula booleana que haga que la fórmula sea verdadera. En otras palabras, el SAT solver busca una solución para una fórmula lógica expresada en forma de cláusulas, si es que existe una.
@@ -108,15 +106,11 @@ Para asegurar que solo uno de los sospechosos es el culpable, se utilizan las si
 
 - Al menos uno es culpable:
     
-    $$
-    S_1 \lor S_2 \lor S_3 \lor S_4 \lor S_5
-    $$
+    $ S_1 \lor S_2 \lor S_3 \lor S_4 \lor S_5 $
     
 - Solo uno puede ser culpable:
     
-    $$
-    (\neg S_1 \lor \neg S_2), (\neg S_1 \lor \neg S_3), (\neg S_1 \lor \neg S_4), (\neg S_1 \lor \neg S_5), \ldots, (\neg S_4 \lor \neg S_5)
-    $$
+    $ (\neg S_1 \lor \neg S_2), (\neg S_1 \lor \neg S_3), (\neg S_1 \lor \neg S_4), (\neg S_1 \lor \neg S_5), \ldots, (\neg S_4 \lor \neg S_5)$
     
 
 Estas cláusulas aseguran que solo una de las variables $S_1$ a $S_5$ puede ser verdadera, es decir, solo un sospechoso puede ser el ladrón.
@@ -180,9 +174,7 @@ Según los testimonios:
 
 ### **Conjunción de todas las proposiciones:**
 
-$$
-Formula = (\neg SA \lor CL) \land \neg CL \land (PM \lor \neg SE) \land (\neg PM \lor SE) \land (CM \lor SV \lor PM) \land (\neg SV \lor SA) \land \neg SE
-$$
+$ Formula = (\neg SA \lor CL) \land \neg CL \land (PM \lor \neg SE) \land (\neg PM \lor SE) \land (CM \lor SV \lor PM) \land (\neg SV \lor SA) \land \neg SE$
 
 | **CL** | **CM** | **PM** | **SA** | **SE** | **SV** | Formula |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -352,13 +344,11 @@ $$
 
 **Sospechosos**
 
-$$
-FP = (¬P_B ∨ P_Al) ∧ (¬P_D) ∧ (¬P_Al) ∧ (¬P_W) ∧(¬P_An ∨ P_B) ∧ (P_Al ∨ P_M ∨ P_An ∨ P_B ∨
+$FP = (¬P_B ∨ P_Al) ∧ (¬P_D) ∧ (¬P_Al) ∧ (¬P_W) ∧(¬P_An ∨ P_B) ∧ (P_Al ∨ P_M ∨ P_An ∨ P_B ∨
 P_D ∨ P_W) ∧ ((¬P_Al ∨ ¬P_M) ∧ (¬P_Al ∨ ¬P_An) ∧ (¬P_Al ∨ ¬P_B) ∧ (¬P_Al ∨ ¬P_D) ∧
 (¬P_Al ∨ ¬P_W) ∧ (¬P_M ∨ ¬P_An) ∧ (¬P_M ∨ ¬P_B) ∧ (¬P_M ∨ ¬P_D) ∧ (¬P_M ∨ ¬P_W) ∧
 (¬P_An ∨ ¬P_B) ∧ (¬P_An ∨ ¬P_D) ∧ (¬P_An ∨ ¬P_W) ∧ (¬P_B ∨ ¬P_D) ∧ (¬P_B ∨ ¬P_W) ∧
-(¬P_D ∨ ¬P_W))
-$$
+(¬P_D ∨ ¬P_W))$
 
 | **P_Al** | **P_An** | **P_B** | **P_D** | **P_M** | **P_W** | **Formula Personajes** |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -429,9 +419,7 @@ $$
 
 **Trampas**
 
-$$
-FT = (¬T_H) ∧ (T_P ∨ T_C ∨ T_H ∨ T_E ∨ T_A) ∧ (¬T_E) ∧ (T_P ∨ T_A ∨ T_C) ∧ (T_P) ∧ (¬T_E ∨ T_P)∧ (T_P ∨ T_C) ∧ (¬T_C)∧(T_C ∨ T_H ∨ T_E ∨ T_A ∨ T_P)∧((T_C ∨ T_H ∨ T_E ∨ T_A ∨ T_P) ∧ ¬(T_C ∧ T_H) ∧ ¬(T_C ∧ T_E) ∧ ¬(T_C ∧ T_A) ∧ ¬(T_C ∧ T_P) ∧ ¬(T_H ∧ T_E) ∧ ¬(T_H ∧ T_A) ∧ ¬(T_H ∧ T_P) ∧ ¬(T_E ∧ T_A) ∧ ¬(T_E ∧ T_P) ∧ ¬(T_A ∧ T_P))
-$$
+$FT = (¬T_H) ∧ (T_P ∨ T_C ∨ T_H ∨ T_E ∨ T_A) ∧ (¬T_E) ∧ (T_P ∨ T_A ∨ T_C) ∧ (T_P) ∧ (¬T_E ∨ T_P)∧ (T_P ∨ T_C) ∧ (¬T_C)∧(T_C ∨ T_H ∨ T_E ∨ T_A ∨ T_P)∧((T_C ∨ T_H ∨ T_E ∨ T_A ∨ T_P) ∧ ¬(T_C ∧ T_H) ∧ ¬(T_C ∧ T_E) ∧ ¬(T_C ∧ T_A) ∧ ¬(T_C ∧ T_P) ∧ ¬(T_H ∧ T_E) ∧ ¬(T_H ∧ T_A) ∧ ¬(T_H ∧ T_P) ∧ ¬(T_E ∧ T_A) ∧ ¬(T_E ∧ T_P) ∧ ¬(T_A ∧ T_P))$
 
 | **P_Al** | **P_An** | **P_B** | **P_D** | **P_M** | **P_W** | **Formula Trampa** |
 | --- | --- | --- | --- | --- | --- | --- |
