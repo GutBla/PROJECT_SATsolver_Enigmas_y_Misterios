@@ -1,0 +1,1051 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+
+\hypertarget{sat-solver-enigmas-y-misterios}{%
+\section{SAT Solver : Enigmas y
+Misterios}\label{sat-solver-enigmas-y-misterios}}
+
+\begin{figure}
+\centering
+\includegraphics{https://img.shields.io/badge/Python-yellow}
+\caption{Python}
+\end{figure}
+
+\hypertarget{quuxe9-es-un-sat-solver}{%
+\subsection{¿Qué es un SAT Solver?}\label{quuxe9-es-un-sat-solver}}
+
+Un SAT solver (Satisfiability Solver) es un software que resuelve
+problemas de satisfacibilidad booleana. Estos problemas consisten en
+determinar si existe una asignación de valores (verdadero o falso) a las
+variables de una fórmula booleana que haga que la fórmula sea verdadera.
+En otras palabras, el SAT solver busca una solución para una fórmula
+lógica expresada en forma de cláusulas, si es que existe una.
+
+\begin{figure}
+\centering
+\includegraphics{images/infografia_sat_solver_conceptos.png.png}
+\caption{infografia\_sat\_solver\_conceptos.png.png}
+\end{figure}
+
+\hypertarget{cuxf3mo-funciona-un-sat-solver}{%
+\subsubsection{¿Cómo funciona un SAT
+Solver?}\label{cuxf3mo-funciona-un-sat-solver}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Entrada}: Toma una fórmula booleana en forma normal conjuntiva
+  (CNF), que es una conjunción de cláusulas, donde cada cláusula es una
+  disyunción de literales.
+\item
+  \textbf{Proceso}:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \textbf{Heurísticas de Selección}: Utiliza heurísticas para
+    seleccionar qué variables asignar y en qué orden.
+  \item
+    \textbf{Propagación}: Aplica reglas para deducir valores de
+    variables basándose en asignaciones actuales.
+  \item
+    \textbf{Backtracking}: Si una asignación lleva a una contradicción,
+    el solver retrocede y prueba otras posibles asignaciones.
+  \item
+    \textbf{Optimización}: Emplea técnicas avanzadas como la propagación
+    de cláusulas y el aprendizaje de cláusulas para mejorar la
+    eficiencia.
+  \end{itemize}
+\item
+  \textbf{Salida}: El solver devuelve si la fórmula es satisfacible (con
+  una asignación de valores) o insatisfacible (sin ninguna asignación
+  que haga verdadera la fórmula).
+\end{enumerate}
+
+\hypertarget{quuxe9-es-la-biblioteca-pysat}{%
+\subsection{¿Qué es la biblioteca
+PySAT?}\label{quuxe9-es-la-biblioteca-pysat}}
+
+PySAT es una biblioteca en Python diseñada para trabajar con problemas
+de satisfacibilidad booleana (SAT). Proporciona una interfaz para
+diferentes solvers SAT y herramientas para manipular y analizar fórmulas
+CNF. Es útil para investigadores y desarrolladores que trabajan con
+problemas de lógica y optimización combinatoria.
+
+\begin{figure}
+\centering
+\includegraphics{images/infografia_pysat_algoritmo_python.png}
+\caption{infografia\_pysat\_algoritmo\_python.png}
+\end{figure}
+
+\hypertarget{menuxfa-principal}{%
+\section{MENÚ PRINCIPAL}\label{menuxfa-principal}}
+
+\textbf{Descripción:}
+
+En este juego de misterio, asumes el rol del detective Hércules Poirot,
+quien debe resolver intrigantes casos de asesinato y trampa. Cada caso
+tiene su propio conjunto de personajes y declaraciones que guiarán tu
+deducción.
+
+\begin{figure}
+\centering
+\includegraphics{images/Enignas-y-misterios-Logic.png}
+\caption{Enignas-y-misterios-Logic.png}
+\end{figure}
+
+\textbf{Opciones de Casos:}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{El Misterio del Museo} (Fácil)
+\item
+  \textbf{Asesinato en la Mansión Baker Street} (Intermedio)
+\item
+  \textbf{Alguien hizo trampa en el Examen} (Avanzado)
+\item
+  \textbf{Salir}
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{nivel-fuxe1cil-el-misterio-del-museo}{%
+\subsection{NIVEL FÁCIL: El Misterio del
+Museo}\label{nivel-fuxe1cil-el-misterio-del-museo}}
+
+\begin{figure}
+\centering
+\includegraphics{images/Misterio-del-museo-portada.png}
+\caption{Misterio-del-museo-portada.png}
+\end{figure}
+
+\hypertarget{descripciuxf3n-del-caso}{%
+\subsubsection{Descripción del Caso}\label{descripciuxf3n-del-caso}}
+
+El Misterio del Museo es un juego de deducción lógica en el que los
+jugadores deben descubrir quién robó una valiosa pintura en una galería
+de arte. Los jugadores escucharán las declaraciones de los cinco
+personajes principales del museo, cada uno con sus propias actividades y
+afirmaciones durante el momento del robo.
+
+\hypertarget{objetivo}{%
+\subsubsection{\texorpdfstring{\textbf{Objetivo}}{Objetivo}}\label{objetivo}}
+
+El objetivo del juego es determinar quién es el verdadero culpable al
+analizar las declaraciones de los sospechosos. Los jugadores deben
+decidir si afirman o niegan cada declaración proporcionada.
+
+\textbf{Instrucciones del Juego:}
+
+\begin{itemize}
+\tightlist
+\item
+  El juego comienza con una breve introducción y presentación de los
+  sospechosos.
+\item
+  Se presentan las declaraciones de cada sospechoso.
+\item
+  El jugador debe elegir si afirma o niega cada declaración ingresando
+  ``a'' para afirmar o ``n'' para negar.
+\item
+  Basado en las elecciones del jugador, el juego utiliza un SAT solver
+  para determinar la solución.
+\item
+  El juego presenta al culpable basado en la lógica deducida de las
+  declaraciones.
+\end{itemize}
+
+\hypertarget{formulaciuxf3n-luxf3gica-del-juego}{%
+\subsubsection{\texorpdfstring{\textbf{Formulación Lógica del
+Juego}}{Formulación Lógica del Juego}}\label{formulaciuxf3n-luxf3gica-del-juego}}
+
+El juego utiliza un enfoque de lógica proposicional para deducir quién
+es el culpable basándose en las declaraciones de los sospechosos. Esta
+lógica se formula en términos de cláusulas CNF (forma normal conjuntiva)
+que se resuelven usando un SAT solver.
+
+\begin{figure}
+\centering
+\includegraphics{images/Misterio-del-museo-personajes.png}
+\caption{Misterio-del-museo-personajes.png}
+\end{figure}
+
+\hypertarget{personajes}{%
+\subsubsection{\texorpdfstring{\textbf{Personajes}}{Personajes}}\label{personajes}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Alicia (\(S_1\))} - Curadora del museo.
+\item
+  \textbf{Bruno (\(S_2\))} - Guardián nocturno.
+\item
+  \textbf{Carmen (\(S_3\))} - Restauradora de arte.
+\item
+  \textbf{Daniel (\(S_4\))} - Visitante frecuente.
+\item
+  \textbf{Elena (\(S_5\))} - Estudiante de arte.
+\end{enumerate}
+
+\hypertarget{declaraciones-de-los-personajes}{%
+\subsubsection{\texorpdfstring{\textbf{Declaraciones de los
+Personajes}}{Declaraciones de los Personajes}}\label{declaraciones-de-los-personajes}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Alicia} - Curadora del museo, niega ser la culpable.
+\item
+  \textbf{Bruno} - Guardián nocturno, afirma que Carmen no es la
+  culpable.
+\item
+  \textbf{Carmen} - Restauradora de arte, dice que el ladrón es uno de
+  los visitantes frecuentes.
+\item
+  \textbf{Daniel} - Visitante frecuente del museo, acusa a Alicia de ser
+  la culpable.
+\item
+  \textbf{Elena} - Estudiante de arte, afirma que Bruno no es el
+  culpable.
+\end{enumerate}
+
+\hypertarget{declaraciones-en-su-forma-de-cluxe1usulas}{%
+\subsubsection{\texorpdfstring{\textbf{Declaraciones en su Forma de
+Cláusulas}}{Declaraciones en su Forma de Cláusulas}}\label{declaraciones-en-su-forma-de-cluxe1usulas}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Alicia:} ``No soy la culpable.''
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Si se niega su declaración: \(S_1\) es culpable \(\rightarrow S_1\)
+  \item
+    Si se afirma su declaración: \(S_1\) no es
+    culpable\(\rightarrow \neg S_1\)
+  \end{itemize}
+\item
+  \textbf{Bruno:} ``Carmen no es la culpable.''
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Si se niega su declaración: Carmen es culpable \(\rightarrow S_3\)
+  \item
+    Si se afirma su declaración: Carmen no es culpable
+    \(\rightarrow \neg S_3\)
+  \end{itemize}
+\item
+  \textbf{Carmen:} ``El ladrón es uno de los visitantes frecuentes.''
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Si se niega su declaración: Daniel y Elena no son culpables
+    \(\rightarrow \neg S_4\) y \(\neg S_5\)
+  \item
+    Si se afirma su declaración: Daniel o Elena son culpables
+    \(\rightarrow S_4\) o \(S_5\)
+  \end{itemize}
+\item
+  \textbf{Daniel:} ``Alicia es la culpable.''
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Si se afirma su declaración: Alicia es culpable \(\rightarrow S_1\)
+  \item
+    Si se niega su declaración: Alicia no es culpable
+    \(\rightarrow \neg S_1\)
+  \end{itemize}
+\item
+  \textbf{Elena:} ``Bruno no es el culpable.''
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Si se niega su declaración: Bruno es culpable \(\rightarrow S_2\)
+  \item
+    Si se afirma su declaración: Bruno no es culpable
+    \(\rightarrow \neg S_2\)
+  \end{itemize}
+\end{enumerate}
+
+\hypertarget{cluxe1usulas-de-exclusiuxf3n-mutua}{%
+\subsubsection{\texorpdfstring{\textbf{Cláusulas de Exclusión
+Mutua}}{Cláusulas de Exclusión Mutua}}\label{cluxe1usulas-de-exclusiuxf3n-mutua}}
+
+Para asegurar que solo uno de los sospechosos es el culpable, se
+utilizan las siguientes cláusulas:
+
+\begin{itemize}
+\item
+  Al menos uno es culpable:
+
+  \(S_1\lor S_2\lor S_3\lor S_4\lor S_5\)
+\item
+  Solo uno puede ser culpable:
+
+  \((\neg S_1 \lor \neg S_2), (\neg S_1 \lor \neg S_3), (\neg S_1 \lor \neg S_4), (\neg S_1 \lor \neg S_5), \ldots, (\neg S_4 \lor \neg S_5)\)
+\end{itemize}
+
+Estas cláusulas aseguran que solo una de las variables \(S_1\) a \(S_5\)
+puede ser verdadera, es decir, solo un sospechoso puede ser el ladrón.
+
+\hypertarget{resoluciuxf3n}{%
+\subsubsection{\texorpdfstring{\textbf{Resolución}}{Resolución}}\label{resoluciuxf3n}}
+
+El juego utiliza un SAT solver para resolver el conjunto de cláusulas
+generado a partir de las respuestas del jugador. El solver determina si
+hay un modelo que satisface todas las cláusulas y, en caso afirmativo,
+identifica al culpable.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{nivel-intermedio-asesinato-en-la-mansiuxf3n-baker-street}{%
+\subsection{NIVEL INTERMEDIO: Asesinato en la Mansión Baker
+Street}\label{nivel-intermedio-asesinato-en-la-mansiuxf3n-baker-street}}
+
+\begin{figure}
+\centering
+\includegraphics{images/Asesinato-en-la-mansion-baker-street-portada.png}
+\caption{Asesinato-en-la-mansion-baker-street-portada.png}
+\end{figure}
+
+\hypertarget{descripciuxf3n-del-caso-1}{%
+\subsubsection{Descripción del Caso}\label{descripciuxf3n-del-caso-1}}
+
+Durante la fiesta de fin de año en la mansión Baker Street, el anfitrión
+ha sido asesinado. En el momento del crimen, solo seis invitados
+permanecían en la mansión: el Coronel Mostaza, la Señora Azulino, el
+Profesor Moradillo, el Señor Verdi, la Señorita Escarlata y la Chef
+Leblang. Las coartadas y testimonios de estos personajes serán clave
+para desentrañar el misterio. Cada uno presenta coartadas y
+declaraciones que deben ser cuidadosamente examinadas para descubrir al
+culpable.
+
+\begin{figure}
+\centering
+\includegraphics{images/Asesinato-en-la-mansion-baker-street-personajes.png}
+\caption{Asesinato-en-la-mansion-baker-street-personajes.png}
+\end{figure}
+
+\hypertarget{personajes-1}{%
+\subsubsection{\texorpdfstring{\textbf{Personajes}}{Personajes}}\label{personajes-1}}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Coronel Mostaza (\(CM\))}
+\item
+  \textbf{Señora Azulino (\(SA\))}
+\item
+  \textbf{Profesor Moradillo (\(PM\))}
+\item
+  \textbf{Señor Verdi (\(SV\))}
+\item
+  \textbf{Señorita Escarlata (\(SE\))}
+\item
+  \textbf{Chef Leblang (\(CL\))}
+\end{itemize}
+
+\hypertarget{declaraciones}{%
+\subsubsection{\texorpdfstring{\textbf{Declaraciones}}{Declaraciones}}\label{declaraciones}}
+
+Según los testimonios:
+
+\begin{itemize}
+\tightlist
+\item
+  Si la Señora Azulino es culpable, entonces la Chef Leblang también lo
+  es, lo que sugiere una posible complicidad entre ambas. Esto podría
+  indicar un motivo común o una conspiración para cometer el crimen.
+\item
+  La Chef Leblang no es culpable; su coartada es sólida, ya que estaba
+  en la cocina, lejos de la escena del crimen, lo que hace imposible su
+  participación directa en el asesinato.
+\item
+  El Profesor Moradillo y la Señorita Escarlata están tan
+  interrelacionados que si uno es culpable, el otro también lo es. Sus
+  coartadas y testimonios se respaldan mutuamente, indicando que si uno
+  cometió el crimen, el otro necesariamente participó o fue testigo.
+\item
+  Uno de los sospechosos debe ser el Coronel Mostaza, el Señor Verdi o
+  el Profesor Moradillo, ya que cada uno tenía motivos sólidos para
+  asesinar al anfitrión:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    El Coronel Mostaza podría haber tenido un conflicto personal o
+    profesional con el anfitrión.
+  \item
+    El Señor Verdi podría haber estado motivado por disputas financieras
+    o personales.
+  \item
+    El Profesor Moradillo podría haber visto el asesinato como una forma
+    de eliminar un obstáculo a sus ambiciones o disputas personales.
+  \end{itemize}
+\item
+  Si el Señor Verdi es culpable, entonces la Señora Azulino también lo
+  es, debido a que fueron vistos interactuando cerca de la hora del
+  crimen y estuvieron cerca del anfitrión antes del asesinato.
+\item
+  Finalmente, la Señorita Escarlata no es culpable. Ella es la menos
+  beneficiada por la muerte del anfitrión y sufre más las consecuencias
+  de esta situación, por lo que carece de un motivo racional para haber
+  cometido el asesinato.
+\end{itemize}
+
+\hypertarget{proposiciones}{%
+\subsubsection{\texorpdfstring{\textbf{Proposiciones}}{Proposiciones}}\label{proposiciones}}
+
+\begin{itemize}
+\tightlist
+\item
+  \(SA\): La Señora Azulino es culpable del crimen.
+\item
+  \(CL\): La Chef Leblang es culpable del crimen.
+\item
+  \(PM\): El Profesor Moradillo es culpable del crimen.
+\item
+  \(SV\): El Señor Verdi es culpable del crimen.
+\item
+  \(SE\): La Señorita Escarlata es culpable del crimen.
+\item
+  \(CM\): El Coronel Mostaza es culpable del crimen.
+\end{itemize}
+
+\hypertarget{formulaciuxf3n-de-declaraciones}{%
+\subsubsection{\texorpdfstring{\textbf{Formulación de
+Declaraciones}}{Formulación de Declaraciones}}\label{formulaciuxf3n-de-declaraciones}}
+
+\begin{itemize}
+\tightlist
+\item
+  \(SA \rightarrow CL = \neg SA \lor CL\) : Si la Señora Azulino es
+  culpable, entonces la Chef Leblang también lo es.
+\item
+  \(\neg CL\) : La Chef Leblang no es culpable.
+\item
+  \((PM \leftrightarrow SE)= (PM \lor \neg SE) \land (\neg PM \lor SE)\)
+  : El Profesor Moradillo y la Señorita Escarlata están vinculados de
+  tal manera que si uno es culpable, el otro también lo es.
+\item
+  \(CM \lor SV \lor PM\): Uno de los sospechosos debe ser el Coronel
+  Mostaza, el Señor Verdi, o el Profesor Moradillo.
+\item
+  \(SV \rightarrow SA = \neg SV \lor SA\) : Si el Señor Verdi es
+  culpable, entonces la Señora Azulino también lo es.
+\item
+  \(\neg SE\) : La Señorita Escarlata no es culpable.
+\end{itemize}
+
+\hypertarget{conjunciuxf3n-de-todas-las-proposiciones}{%
+\subsubsection{\texorpdfstring{\textbf{Conjunción de todas las
+proposiciones:}}{Conjunción de todas las proposiciones:}}\label{conjunciuxf3n-de-todas-las-proposiciones}}
+
+\(Formula = (\neg SA \lor CL) \land \neg CL \land (PM \lor \neg SE) \land (\neg PM \lor SE) \land (CM \lor SV \lor PM) \land (\neg SV \lor SA) \land \neg SE\)
+
+\begin{longtable}[]{@{}lllllll@{}}
+\toprule()
+\textbf{CL} & \textbf{CM} & \textbf{PM} & \textbf{SA} & \textbf{SE} &
+\textbf{SV} & Formula \\
+\midrule()
+\endhead
+F & F & F & F & F & F & F \\
+F & F & F & F & F & T & F \\
+F & F & F & F & T & F & F \\
+F & F & F & F & T & T & F \\
+F & F & F & T & F & F & F \\
+F & F & F & T & F & T & F \\
+F & F & F & T & T & F & F \\
+F & F & F & T & T & T & F \\
+F & F & T & F & F & F & F \\
+F & F & T & F & F & T & F \\
+F & F & T & F & T & F & F \\
+F & F & T & F & T & T & F \\
+F & F & T & T & F & F & F \\
+F & F & T & T & F & T & F \\
+F & F & T & T & T & F & F \\
+F & F & T & T & T & T & F \\
+F & T & F & F & F & F & T \\
+F & T & F & F & F & T & F \\
+F & T & F & F & T & F & F \\
+F & T & F & F & T & T & F \\
+F & T & F & T & F & F & F \\
+F & T & F & T & F & T & F \\
+F & T & F & T & T & F & F \\
+F & T & F & T & T & T & F \\
+F & T & T & F & F & F & F \\
+F & T & T & F & F & T & F \\
+F & T & T & F & T & F & F \\
+F & T & T & F & T & T & F \\
+F & T & T & T & F & F & F \\
+F & T & T & T & F & T & F \\
+F & T & T & T & T & F & F \\
+F & T & T & T & T & T & F \\
+T & F & F & F & F & F & F \\
+T & F & F & F & F & T & F \\
+T & F & F & F & T & F & F \\
+T & F & F & F & T & T & F \\
+T & F & F & T & F & F & F \\
+T & F & F & T & F & T & F \\
+T & F & F & T & T & F & F \\
+T & F & F & T & T & T & F \\
+T & F & T & F & F & F & F \\
+T & F & T & F & F & T & F \\
+T & F & T & F & T & F & F \\
+T & F & T & F & T & T & F \\
+T & F & T & T & F & F & F \\
+T & F & T & T & F & T & F \\
+T & F & T & T & T & F & F \\
+T & F & T & T & T & T & F \\
+T & T & F & F & F & F & F \\
+T & T & F & F & F & T & F \\
+T & T & F & F & T & F & F \\
+T & T & F & F & T & T & F \\
+T & T & F & T & F & F & F \\
+T & T & F & T & F & T & F \\
+T & T & F & T & T & F & F \\
+T & T & F & T & T & T & F \\
+T & T & T & F & F & F & F \\
+T & T & T & F & F & T & F \\
+T & T & T & F & T & F & F \\
+T & T & T & F & T & T & F \\
+T & T & T & T & F & F & F \\
+T & T & T & T & F & T & F \\
+T & T & T & T & T & F & F \\
+T & T & T & T & T & T & F \\
+\bottomrule()
+\end{longtable}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{nivel-avanzado-alguien-hizo-trampa-en-el-examen}{%
+\subsection{NIVEL AVANZADO: Alguien hizo trampa en el
+Examen}\label{nivel-avanzado-alguien-hizo-trampa-en-el-examen}}
+
+\begin{figure}
+\centering
+\includegraphics{images/Trampa-en-el-examen-portada.png}
+\caption{Trampa-en-el-examen-portada.png}
+\end{figure}
+
+\hypertarget{descripciuxf3n-del-caso-2}{%
+\subsubsection{Descripción del Caso}\label{descripciuxf3n-del-caso-2}}
+
+``El Tramposo del Examen'' es un juego de detectives en el que el
+jugador debe descubrir quién hizo trampa durante un examen importante.
+Hay seis estudiantes sospechosos, y cada uno de ellos podría ser el
+culpable. El objetivo del jugador es identificar al culpable y
+determinar cómo hizo trampa, utilizando pistas y deducciones basadas en
+declaraciones que podrían ser ciertas o falsas.
+
+\begin{figure}
+\centering
+\includegraphics{images/Trampa-en-el-examen-personajes-y-trampa.png}
+\caption{Trampa-en-el-examen-personajes-y-trampa.png}
+\end{figure}
+
+\hypertarget{personajes-2}{%
+\subsubsection{\texorpdfstring{\textbf{Personajes}}{Personajes}}\label{personajes-2}}
+
+\begin{itemize}
+\tightlist
+\item
+  Andrea
+\item
+  Brisa
+\item
+  Alan
+\item
+  Alondra
+\item
+  Daniel
+\item
+  Wilmar
+\end{itemize}
+
+\hypertarget{trampas}{%
+\subsubsection{\texorpdfstring{\textbf{Trampas}}{Trampas}}\label{trampas}}
+
+\begin{itemize}
+\tightlist
+\item
+  Uso del celular (chat GPT)
+\item
+  Hojas ocultas con respuestas
+\item
+  Robó el examen un día antes
+\item
+  Audífono oculto
+\item
+  Se copió de su compañero/a
+\end{itemize}
+
+\hypertarget{propuxf3sito-del-juego}{%
+\subsubsection{\texorpdfstring{\textbf{Propósito del
+Juego}}{Propósito del Juego}}\label{propuxf3sito-del-juego}}
+
+\hypertarget{pistas-para-encontrar-al-culpable}{%
+\subsubsection{\texorpdfstring{\textbf{Pistas para encontrar al
+culpable}}{Pistas para encontrar al culpable}}\label{pistas-para-encontrar-al-culpable}}
+
+\begin{itemize}
+\tightlist
+\item
+  Según las pistas, si Brisa está involucrada, entonces Alondra también
+  lo está. Esto sugiere que podrían haber trabajado juntas en la trampa,
+  ya que sus respuestas eran similares.
+\item
+  Daniel tiene una coartada sólida y no puede ser el responsable;
+  además, dio el examen otro día porque estaba en la biblioteca.
+\item
+  Alan no es culpable; su comportamiento durante el examen fue impecable
+  y no tiene motivos para engañar.
+\item
+  No puede ser Wilmar porque al momento del examen estaba en la
+  enfermería.
+\item
+  Si Andrea es culpable, entonces Brisa también lo es, ya que se
+  encontraron mensajes de texto entre ellas que sugieren colaboración.
+\item
+  Hay un culpable. Solo hay un culpable.
+\end{itemize}
+
+\hypertarget{declaraciones-para-investigar-la-trampa-utilizada}{%
+\subsubsection{\texorpdfstring{\textbf{Declaraciones para investigar la
+trampa
+utilizada}}{Declaraciones para investigar la trampa utilizada}}\label{declaraciones-para-investigar-la-trampa-utilizada}}
+
+\begin{itemize}
+\tightlist
+\item
+  Andrea menciona que no pudo ser con hojas ocultas, ya que antes de
+  ingresar al examen se revisó a todos los estudiantes.
+\item
+  Brisa dice que si el culpable no copió de un compañero, entonces tuvo
+  que usar otro medio de trampa.
+\item
+  Melina dice que el culpable no pudo robar el examen un día antes
+  porque el examen se cambió en la mañana.
+\item
+  Alan dice que si el culpable no copió de un compañero, entonces tuvo
+  que usar un audífono oculto o un celular.
+\item
+  Brisa dice que el culpable debió copiarle a un compañero porque los
+  pupitres estaban muy cerca y no había acceso a otros medios de trampa.
+\item
+  Daniel dice que si alguien robó el examen un día antes, entonces esa
+  persona no fue el culpable, ya que el examen se cambió y no fue útil.
+  Por lo tanto, el culpable debe haber sido quien copió de un compañero.
+\item
+  Wilmar dice que, debido a la dificultad del examen, el culpable debió
+  copiarle a un compañero o usar un celular.
+\item
+  Alan dice que no pudo ser por el celular, ya que en el lugar donde se
+  hizo el examen no había señal ni conexión.
+\item
+  Se hizo trampa de alguna forma. Solo hay opción de trampa que se hizo.
+\end{itemize}
+
+\hypertarget{proposiciones-1}{%
+\subsubsection{\texorpdfstring{\textbf{Proposiciones}}{Proposiciones}}\label{proposiciones-1}}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Sospechosos}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \(P_{Al}\): Alan es el culpable.
+  \item
+    \(P_{M}\): Melina es la culpable.
+  \item
+    \(P_{An}\): Andrea es la culpable.
+  \item
+    \(P_{B}\): Brisa es la culpable.
+  \item
+    \(P_{D}\): Daniel es el culpable.
+  \item
+    \(P_{W}\): Wilmar es el culpable.
+  \end{itemize}
+\item
+  \textbf{Trampas}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \(T_{C}\): Uso el celular (chat GPT).
+  \item
+    \(T_{H}\): Tenía hojas ocultas (respuestas, apuntes).
+  \item
+    \(T_{E}\): Se robó el examen un día antes.
+  \item
+    \(T_{A}\): Audífono oculto.
+  \item
+    \(T_{P}\): Se copió de un compañero/a.
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{formulaciuxf3n-de-declaraciones-1}{%
+\subsubsection{\texorpdfstring{\textbf{Formulación de
+Declaraciones}}{Formulación de Declaraciones}}\label{formulaciuxf3n-de-declaraciones-1}}
+
+\hypertarget{pistas}{%
+\subsubsection{\texorpdfstring{\textbf{Pistas}}{Pistas}}\label{pistas}}
+
+\begin{itemize}
+\tightlist
+\item
+  \(P_{B} \rightarrow P_{Al} = \neg P_{B} \lor P_{Al}\) : Si Brisa está
+  involucrada, entonces Alondra también lo está.
+\item
+  \(\neg P_{D}\): Daniel tiene una coartada sólida y no puede ser el
+  responsable.
+\item
+  \(\neg P_{Al}\): Alan no es culpable.
+\item
+  \(\neg P_{W}\): No puede ser Wilmar porque al momento del examen
+  estaba en la enfermería.
+\item
+  \(P_{An} \rightarrow P_{B} = \neg P_{An} \lor P_{B}\) : Si Andrea es
+  culpable, entonces Brisa también lo es.
+\item
+  \(P_{Al} \lor P_{M} \lor P_{An} \lor P_{B} \lor P_{D} \lor P_{W}\):
+  Hay un culpable entre los sospechosos.
+\item
+  \((\neg P_{Al} \lor \neg P_{M}) \land (\neg P_{Al} \lor \neg P_{An}) \land (\neg P_{Al} \lor \neg P_{B}) \land (\neg P_{Al} \lor \neg P_{D}) \land (\neg P_{Al} \lor \neg P_{W}) \land (\neg P_{M} \lor \neg P_{An}) \land (\neg P_{M} \lor \neg P_{B}) \land (\neg P_{M} \lor \neg P_{D}) \land (\neg P_{M} \lor \neg P_{W}) \land (\neg P_{An} \lor \neg P_{B}) \land (\neg P_{An} \lor \neg P_{D}) \land (\neg P_{An} \lor \neg P_{W}) \land (\neg P_{B} \lor \neg P_{D}) \land (\neg P_{B} \lor \neg P_{W}) \land (\neg P_{D} \lor \neg P_{W})\)
+  : Solo hay un culpable.
+\end{itemize}
+
+\hypertarget{declaraciones-1}{%
+\subsubsection{\texorpdfstring{\textbf{Declaraciones}}{Declaraciones}}\label{declaraciones-1}}
+
+\begin{itemize}
+\tightlist
+\item
+  \(\neg T_{H}\): Andrea menciona que no pudo ser con hojas ocultas.
+\item
+  \(\neg T_{P} \rightarrow (T_{C} \lor T_{H} \lor T_{E} \lor T_{A}) = T_{P} \lor (T_{C} \lor T_{H} \lor T_{E} \lor T_{A})\):
+  Brisa dice que, si el culpable no copió de un compañero, entonces tuvo
+  que usar otro medio de trampa.
+\item
+  \(\neg T_{E}\): Melina dice que el culpable no pudo robar el examen un
+  día antes.
+\item
+  \(\neg T_{P} \rightarrow (T_{A} \lor T_{C}) = T_{P} \lor (T_{A} \lor T_{C})\):
+  Alan dice que, si el culpable no copió de un compañero, entonces tuvo
+  que usar un audífono oculto o un celular.
+\item
+  \(T_{P}\): Brisa dice que el culpable debió copiarle a un compañero.
+\item
+  \(T_{E} \rightarrow T_{P} = \neg T_{E} \lor T_{P}\): Daniel dice que
+  si el culpable robó el examen un día antes, entonces debe haber sido
+  quien copió de un compañero, porque el examen no le hubiera sido útil.
+\item
+  \(T_{P} \lor T_{C}\): Wilmar dice que el culpable debió copiarle a un
+  compañero o usar un celular.
+\item
+  \(\neg T_{C}\): Alan dice que no pudo ser por el celular.
+\item
+  \(T_{C} \lor T_{H} \lor T_{E} \lor T_{A} \lor T_{P}\): Una forma en la
+  que se hizo trampa.
+\item
+  \((T_{C} \lor T_{H} \lor T_{E} \lor T_{A} \lor T_{P}) \land \neg(T_{C} \land T_{H}) \land \neg(T_{C} \land T_{E}) \land \neg(T_{C} \land T_{A}) \land \neg(T_{C} \land T_{P}) \land \neg(T_{H} \land T_{E}) \land \neg(T_{H} \land T_{A}) \land \neg(T_{H} \land T_{P}) \land \neg(T_{E} \land T_{A}) \land \neg(T_{E} \land T_{P}) \land \neg(T_{A} \land T_{P})\)
+  : Solo hay una opción que se usó para hacer trampa.
+\end{itemize}
+
+\hypertarget{restricciones}{%
+\subsubsection{\texorpdfstring{\textbf{Restricciones}}{Restricciones}}\label{restricciones}}
+
+\begin{itemize}
+\tightlist
+\item
+  \(P \land T\)
+\end{itemize}
+
+\hypertarget{conjunciuxf3n-de-todas-las-proposiciones-1}{%
+\subsubsection{\texorpdfstring{\textbf{Conjunción de todas las
+proposiciones}}{Conjunción de todas las proposiciones}}\label{conjunciuxf3n-de-todas-las-proposiciones-1}}
+
+\textbf{Sospechosos}
+
+\(FP = (¬P_B ∨ P_Al) ∧ (¬P_D) ∧ (¬P_Al) ∧ (¬P_W) ∧(¬P_An ∨ P_B) ∧ (P_Al ∨ P_M ∨ P_An ∨ P_B ∨ P_D ∨ P_W) ∧ ((¬P_Al ∨ ¬P_M) ∧ (¬P_Al ∨ ¬P_An) ∧ (¬P_Al ∨ ¬P_B) ∧ (¬P_Al ∨ ¬P_D) ∧ (¬P_Al ∨ ¬P_W) ∧ (¬P_M ∨ ¬P_An) ∧ (¬P_M ∨ ¬P_B) ∧ (¬P_M ∨ ¬P_D) ∧ (¬P_M ∨ ¬P_W) ∧ (¬P_An ∨ ¬P_B) ∧ (¬P_An ∨ ¬P_D) ∧ (¬P_An ∨ ¬P_W) ∧ (¬P_B ∨ ¬P_D) ∧ (¬P_B ∨ ¬P_W) ∧ (¬P_D ∨ ¬P_W))\)
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.1429}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.1429}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.1429}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.1429}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.1429}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.1429}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.1429}}@{}}
+\toprule()
+\begin{minipage}[b]{\linewidth}\raggedright
+\textbf{P\_Al}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{P\_An}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{P\_B}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{P\_D}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{P\_M}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{P\_W}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Formula Personajes}
+\end{minipage} \\
+\midrule()
+\endhead
+F & F & F & F & F & F & F \\
+F & F & F & F & F & T & F \\
+F & F & F & F & T & F & T \\
+F & F & F & F & T & T & F \\
+F & F & F & T & F & F & F \\
+F & F & F & T & F & T & F \\
+F & F & F & T & T & F & F \\
+F & F & F & T & T & T & F \\
+F & F & T & F & F & F & F \\
+F & F & T & F & F & T & F \\
+F & F & T & F & T & F & F \\
+F & F & T & F & T & T & F \\
+F & F & T & T & F & F & F \\
+F & F & T & T & F & T & F \\
+F & F & T & T & T & F & F \\
+F & F & T & T & T & T & F \\
+F & T & F & F & F & F & F \\
+F & T & F & F & F & T & F \\
+F & T & F & F & T & F & F \\
+F & T & F & F & T & T & F \\
+F & T & F & T & F & F & F \\
+F & T & F & T & F & T & F \\
+F & T & F & T & T & F & F \\
+F & T & F & T & T & T & F \\
+F & T & T & F & F & F & F \\
+F & T & T & F & F & T & F \\
+F & T & T & F & T & F & F \\
+F & T & T & F & T & T & F \\
+F & T & T & T & F & F & F \\
+F & T & T & T & F & T & F \\
+F & T & T & T & T & F & F \\
+F & T & T & T & T & T & F \\
+T & F & F & F & F & F & F \\
+T & F & F & F & F & T & F \\
+T & F & F & F & T & F & F \\
+T & F & F & F & T & T & F \\
+T & F & F & T & F & F & F \\
+T & F & F & T & F & T & F \\
+T & F & F & T & T & F & F \\
+T & F & F & T & T & T & F \\
+T & F & T & F & F & F & F \\
+T & F & T & F & F & T & F \\
+T & F & T & F & T & F & F \\
+T & F & T & F & T & T & F \\
+T & F & T & T & F & F & F \\
+T & F & T & T & F & T & F \\
+T & F & T & T & T & F & F \\
+T & F & T & T & T & T & F \\
+T & T & F & F & F & F & F \\
+T & T & F & F & F & T & F \\
+T & T & F & F & T & F & F \\
+T & T & F & F & T & T & F \\
+T & T & F & T & F & F & F \\
+T & T & F & T & F & T & F \\
+T & T & F & T & T & F & F \\
+T & T & F & T & T & T & F \\
+T & T & T & F & F & F & F \\
+T & T & T & F & F & T & F \\
+T & T & T & F & T & F & F \\
+T & T & T & F & T & T & F \\
+T & T & T & T & F & F & F \\
+T & T & T & T & F & T & F \\
+T & T & T & T & T & F & F \\
+T & T & T & T & T & T & F \\
+\bottomrule()
+\end{longtable}
+
+\textbf{Trampas}
+
+\(FT = (¬T_H) ∧ (T_P ∨ T_C ∨ T_H ∨ T_E ∨ T_A) ∧ (¬T_E) ∧ (T_P ∨ T_A ∨ T_C) ∧ (T_P) ∧ (¬T_E ∨ T_P)∧ (T_P ∨ T_C) ∧ (¬T_C)∧(T_C ∨ T_H ∨ T_E ∨ T_A ∨ T_P)∧((T_C ∨ T_H ∨ T_E ∨ T_A ∨ T_P) ∧ ¬(T_C ∧ T_H) ∧ ¬(T_C ∧ T_E) ∧ ¬(T_C ∧ T_A) ∧ ¬(T_C ∧ T_P) ∧ ¬(T_H ∧ T_E) ∧ ¬(T_H ∧ T_A) ∧ ¬(T_H ∧ T_P) ∧ ¬(T_E ∧ T_A) ∧ ¬(T_E ∧ T_P) ∧ ¬(T_A ∧ T_P))\)
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.1429}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.1429}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.1429}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.1429}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.1429}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.1429}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.1429}}@{}}
+\toprule()
+\begin{minipage}[b]{\linewidth}\raggedright
+\textbf{P\_Al}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{P\_An}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{P\_B}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{P\_D}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{P\_M}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{P\_W}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Formula Trampa}
+\end{minipage} \\
+\midrule()
+\endhead
+F & F & F & F & F & F & F \\
+F & F & F & F & F & T & F \\
+F & F & F & F & T & F & T \\
+F & F & F & F & T & T & F \\
+F & F & F & T & F & F & F \\
+F & F & F & T & F & T & F \\
+F & F & F & T & T & F & F \\
+F & F & F & T & T & T & F \\
+F & F & T & F & F & F & F \\
+F & F & T & F & F & T & F \\
+F & F & T & F & T & F & F \\
+F & F & T & F & T & T & F \\
+F & F & T & T & F & F & F \\
+F & F & T & T & F & T & F \\
+F & F & T & T & T & F & F \\
+F & F & T & T & T & T & F \\
+F & T & F & F & F & F & F \\
+F & T & F & F & F & T & F \\
+F & T & F & F & T & F & F \\
+F & T & F & F & T & T & F \\
+F & T & F & T & F & F & F \\
+F & T & F & T & F & T & F \\
+F & T & F & T & T & F & F \\
+F & T & F & T & T & T & F \\
+F & T & T & F & F & F & F \\
+F & T & T & F & F & T & F \\
+F & T & T & F & T & F & F \\
+F & T & T & F & T & T & F \\
+F & T & T & T & F & F & F \\
+F & T & T & T & F & T & F \\
+F & T & T & T & T & F & F \\
+F & T & T & T & T & T & F \\
+T & F & F & F & F & F & F \\
+T & F & F & F & F & T & F \\
+T & F & F & F & T & F & F \\
+T & F & F & F & T & T & F \\
+T & F & F & T & F & F & F \\
+T & F & F & T & F & T & F \\
+T & F & F & T & T & F & F \\
+T & F & F & T & T & T & F \\
+T & F & T & F & F & F & F \\
+T & F & T & F & F & T & F \\
+T & F & T & F & T & F & F \\
+T & F & T & F & T & T & F \\
+T & F & T & T & F & F & F \\
+T & F & T & T & F & T & F \\
+T & F & T & T & T & F & F \\
+T & F & T & T & T & T & F \\
+T & T & F & F & F & F & F \\
+T & T & F & F & F & T & F \\
+T & T & F & F & T & F & F \\
+T & T & F & F & T & T & F \\
+T & T & F & T & F & F & F \\
+T & T & F & T & F & T & F \\
+T & T & F & T & T & F & F \\
+T & T & F & T & T & T & F \\
+T & T & T & F & F & F & F \\
+T & T & T & F & F & T & F \\
+T & T & T & F & T & F & F \\
+T & T & T & F & T & T & F \\
+T & T & T & T & F & F & F \\
+T & T & T & T & F & T & F \\
+T & T & T & T & T & F & F \\
+T & T & T & T & T & T & F \\
+\bottomrule()
+\end{longtable}
+
+\end{document}

@@ -1,8 +1,6 @@
 # SAT Solver : Enigmas y Misterios
 ![Python](https://img.shields.io/badge/Python-yellow)
 
-# SAT Solver : Enigmas y Misterios
-
 ## ¿Qué es un SAT Solver?
 
 Un SAT solver (Satisfiability Solver) es un software que resuelve problemas de satisfacibilidad booleana. Estos problemas consisten en determinar si existe una asignación de valores (verdadero o falso) a las variables de una fórmula booleana que haga que la fórmula sea verdadera. En otras palabras, el SAT solver busca una solución para una fórmula lógica expresada en forma de cláusulas, si es que existe una.
