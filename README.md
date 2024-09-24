@@ -1,5 +1,6 @@
 # SAT Solver : Enigmas y Misterios
 ![Python](https://img.shields.io/badge/Python-yellow)
+
 ![Portada Sat Solver.png](images/Portada-Sat-Solver.png)
 
 ## ¿Qué es un SAT Solver?
