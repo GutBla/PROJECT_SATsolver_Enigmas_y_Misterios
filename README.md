@@ -1,7 +1,74 @@
 # SAT Solver : Enigmas y Misterios
-![Python](https://img.shields.io/badge/Python-yellow)
+[![PROJECT](https://img.shields.io/badge/-PROJECT-0d1117.svg?logo=googlekeep&style=popout&logoColor=white)](#)
+[![Python](https://img.shields.io/badge/-Python-FFAE35.svg?logo=python&style=popout)](#)
 
-![Portada Sat Solver.png](images/Portada-Sat-Solver.png)
+![Portada Sat Solver](<images/Portada Sat Solver - Enigmas y Misteriso.png>)
+
+[![Status: Completed](https://img.shields.io/badge/Status-Completed-verde.svg?logo=&style=popout)](#)
+
+## Descripción del proyecto
+
+Proyecto interactivo en Python que te invita a resolver casos de misterio a través de desafíos lógicos y enigmáticos. El juego te sumerge en el rol de un detective, en el que deberás analizar pistas, declaraciones y utilizar un solver SAT para deducir la solución correcta. El proyecto cuenta con tres niveles de dificultad:
+
+- El Misterio del Museo (Fácil)
+- Asesinato en la Mansión Baker Street (Intermedio)
+- Alguien hizo trampa en el Examen (Avanzado)
+
+Cada nivel se encuentra modularizado en su respectivo archivo y ofrece una experiencia única y desafiante.
+
+## Características
+
+- Interfaz interactiva en consola: Utiliza la librería colorama para mejorar la experiencia visual.
+- Resolución de enigmas mediante lógica: Emplea el solver SAT de pysat para validar las soluciones de los casos.
+- Módulos independientes: Cada nivel (fácil, intermedio y avanzado) se gestiona desde módulos separados dentro de la carpeta levels.
+- Diversidad de casos: Tres historias distintas que pondrán a prueba tu capacidad de deducción y análisis.
+
+## Requisitos Previos
+
+- Python 3.11
+- Dependencias de Python:
+    - Colorama 0.4.6
+    - PySat 3.2.0
+
+## Instalación
+
+Clona el repositorio
+
+```bash
+git clone https://github.com/GutBla/PROJECT_SATsolver_Enigmas_y_Misterios.git
+```
+
+Accede al directorio del proyecto
+
+```bash
+cd PROJECT_SATsolver_Enigmas_y_Misterios
+```
+
+1. Instala las dependencias:
+    
+    Si dispones de un archivo requirements.txt, usa:
+    
+    ```bash
+    pip install -r requirements.txt
+    ```
+    
+    O instálalas de forma individual:
+    
+    ```bash
+    pip install colorama
+    pip install python-sat
+    ```
+    
+
+## Uso
+
+Para iniciar el juego, ejecuta el archivo principal:
+
+```bash
+python main.py
+```
+
+Se desplegará un menú principal donde podrás seleccionar entre los distintos casos y niveles de dificultad. Sigue las instrucciones en pantalla para interactuar y resolver cada misterio.
 
 ## ¿Qué es un SAT Solver?
 
@@ -489,3 +556,22 @@ $FT = (¬T_H) ∧ (T_P ∨ T_C ∨ T_H ∨ T_E ∨ T_A) ∧ (¬T_E) ∧ (T_P ∨
 | T | T | T | T | F | T | F |
 | T | T | T | T | T | F | F |
 | T | T | T | T | T | T | F |
+
+# Ejecucion del Proyecto
+A continuación, se presentan capturas de pantalla del juego en acción, mostrando el menú principal y los tres niveles disponibles. El juego comienza en el Menú Principal, donde se elige la dificultad. En Fácil, se resuelve un robo en un museo; en Intermedio, un asesinato en una mansión; y en Difícil, un fraude académico
+
+**Menú Principal**
+
+![Ejecucion del Proyecto 1](images/Ejecucion_SatSolver_EnigmasMisterios_1.png)
+
+**Nivel Fácil - El Misterio del Museo**
+
+![Ejecucion del Proyecto 2](images/Ejecucion_SatSolver_EnigmasMisterios_2.png)
+
+**Nivel Intermedio - Asesinato en la Mansión Baker Street**
+
+![Ejecucion del Proyecto 3](images/Ejecucion_SatSolver_EnigmasMisterios_3.png)
+
+**Nivel Difícil - Trampa en el Examen**
+
+![Ejecucion del Proyecto 4](images/Ejecucion_SatSolver_EnigmasMisterios_4.png)
