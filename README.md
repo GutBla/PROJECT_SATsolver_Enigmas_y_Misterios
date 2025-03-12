@@ -1,6 +1,7 @@
 # SAT Solver : Enigmas y Misterios
 [![PROJECT](https://img.shields.io/badge/-PROJECT-0d1117.svg?logo=googlekeep&style=popout&logoColor=white)](#)
-[![Python](https://img.shields.io/badge/-Python-FFAE35.svg?logo=python&style=popout)](#)
+[![Python](https://img.shields.io/badge/Python-yellow?logo=python&style=popout&logoColor=white)](#)
+
 
 ![Portada Sat Solver](<images/Portada Sat Solver - Enigmas y Misteriso.png>)
 
